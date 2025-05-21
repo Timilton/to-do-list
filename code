@@ -1,0 +1,37 @@
+def display_list(events):
+    print("Your to-do list:")
+    for i, event in enumerate(events, start=1):
+        print(f"{i}. {event}")
+
+events = []
+
+print("This is your to-do list:")
+print("1. Add to your to-do list")
+print("2. Remove task if completed")
+print("3. Exit")
+
+while True:
+    choice = input("Enter what option you would like to select (1, 2, or 3): ")
+
+    if choice == '1':
+        add_event = input("Add events to your list (separate multiple events with a comma): ")
+        event_list = [event.strip() for event in add_event.split(',')]
+        events.extend(event_list) 
+        print(f"The following events have been added to your list: {', '.join(event_list)}")
+
+    elif choice == '2':
+        display_list(events)
+        remove_event = input("Enter the event to remove: ")
+        if remove_event in events:
+            events.remove(remove_event)
+            print(f"'{remove_event}' has been removed from your list.")
+        else:
+            print(f"'{remove_event}' is not in your list.")
+        display_list(events)
+
+    elif choice == '3':
+        print("Exiting the program. Goodbye!")
+        break
+
+    else:
+        print("Invalid choice. Please select 1, 2, or 3.")
